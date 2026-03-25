@@ -1,5 +1,8 @@
 name: build-and-test
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   push:
     branches: [main, dev]
@@ -12,10 +15,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
@@ -26,13 +29,10 @@ jobs:
           pip install ruff black pytest
 
       - name: Run Ruff (lint)
-        run: |
-          python -m ruff check .
+        run: python -m ruff check .
 
       - name: Check formatting (Black)
-        run: |
-          python -m black --check .
+        run: python -m black --check .
 
       - name: Run tests
-        run: |
-          pytest tests/
+        run: pytest tests/
