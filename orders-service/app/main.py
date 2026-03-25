@@ -10,7 +10,8 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000","http://localhost:5000",
+        "http://localhost:3000",
+        "http://localhost:5000",
         "http://localhost:5173",
     ],
     allow_credentials=True,
@@ -23,11 +24,13 @@ app.add_middleware(
 def root():
     return {"message": "Orders API running"}
 
+
 @app.post("/orders")
 async def create_order(order: Order):
     order_dict = order.model_dump()
     result = await orders_collection.insert_one(order_dict)
     return {"id": str(result.inserted_id)}
+
 
 @app.get("/orders")
 async def get_orders():
@@ -37,6 +40,7 @@ async def get_orders():
         del order["_id"]
         orders.append(order)
     return orders
+
 
 @app.get("/orders/{order_id}")
 async def get_order(order_id: str):
@@ -49,19 +53,18 @@ async def get_order(order_id: str):
     del order["_id"]
     return order
 
+
 @app.put("/orders/{order_id}")
 async def update_order(order_id: str, order: Order):
     order_dict = order.model_dump()
 
-    result = await orders_collection.update_one(
-        {"_id": ObjectId(order_id)},
-        {"$set": order_dict}
-    )
+    result = await orders_collection.update_one({"_id": ObjectId(order_id)}, {"$set": order_dict})
 
     if result.matched_count == 1:
         return {"message": "Order updated successfully"}
 
     raise HTTPException(status_code=404, detail="Order not found")
+
 
 @app.delete("/orders/{order_id}")
 async def delete_order(order_id: str):
