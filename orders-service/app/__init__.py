@@ -1,1 +1,1 @@
-from app.database import orders_collection
+from app.database import orders_collection as orders_collection
