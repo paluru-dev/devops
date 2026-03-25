@@ -1,0 +1,59 @@
+Vite 
+(pronounced “veet”, French for fast) is a modern frontend build tool and 
+development server used to build web applications quickly. 
+It is commonly used with frameworks like:
+React
+Vue.js
+Angular
+
+How Vite Works
+Development Mode
+Uses native ES modules
+Loads files on demand
+No full bundling needed
+Production Build
+For production, Vite uses:Rollup
+
+FastAPI:
+FastAPI is a modern, high-performance Python web framework used to build APIs 
+(Application Programming Interfaces) quickly and efficiently. 
+It is designed for building RESTful APIs using Python 3.8+ with automatic validation,
+documentation, and high performance.
+
+It is built on top of:
+
+Starlette → for web handling
+
+Pydantic → for data validation and type checking
+
+FastAPI is widely used in microservices, ML APIs, and backend services.
+
+Framework: FastAPI
+Why: - Automatic Swagger/OpenAPI docs - Pydantic validation - Async support - 
+
+
+
+Database driver
+Use Motor (async MongoDB driver) for production-style async integration.
+
+Validation: Use Pydantic models
+
+
+Why MongoDB works here
+Flexible schema
+Easy JSON mapping with frontend/backend
+Good for rapidly evolving product requirements
+
+React + TypeScript + Vite
+Why: - 
+Type safety - Component reusability - Modern build tooling - 
+"TypeScript reduces runtime errors by moving interface mismatches to compile time 
+and improvmaintainability for growing frontend codebases."
+
+Security
+CORS configuration
+Environment-based secrets
+Input sanitization
+JWT auth in next phase
+
+
