@@ -1,6 +1,7 @@
+from bson import ObjectId
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from bson import ObjectId
+
 from .database import orders_collection
 from .models import Order
 
@@ -8,7 +9,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:3000","http://localhost:5000",
+        "http://localhost:5173",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -21,7 +25,7 @@ def root():
 
 @app.post("/orders")
 async def create_order(order: Order):
-    order_dict = order.dict()
+    order_dict = order.model_dump()
     result = await orders_collection.insert_one(order_dict)
     return {"id": str(result.inserted_id)}
 
@@ -47,7 +51,7 @@ async def get_order(order_id: str):
 
 @app.put("/orders/{order_id}")
 async def update_order(order_id: str, order: Order):
-    order_dict = order.dict()
+    order_dict = order.model_dump()
 
     result = await orders_collection.update_one(
         {"_id": ObjectId(order_id)},
