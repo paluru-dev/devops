@@ -39,4 +39,4 @@ jobs:
 
       - name: Run tests
         working-directory: ./orders-service
-        run: epytest
+        run: pytest
