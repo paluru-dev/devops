@@ -13,7 +13,7 @@ app.add_middleware(
         "http://localhost:3000",
         "http://localhost:5000",
         "http://localhost:5173",
-        "http://18.221.251.75:3000"
+        "http://18.221.251.75:3000",
     ],
     allow_credentials=True,
     allow_methods=["*"],
