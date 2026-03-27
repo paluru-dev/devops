@@ -118,7 +118,7 @@ function App() {
 
   return (
     <div style={{ maxWidth: "900px", margin: "0 auto", padding: "24px" }}>
-      <h1>Prasad Test Orders Management</h1>
+      <h1>Orders Management</h1>
 
       <div
         style={{
