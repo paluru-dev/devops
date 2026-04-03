@@ -57,8 +57,16 @@ jobs:
           set -e
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          HOST="$(echo "$EC2_HOST" | tr -d '[:space:]')"
-          ssh-keyscan -T 10 -H "$HOST" >> ~/.ssh/known_hosts
+          echo "Testing SSH port..."
+          timeout 10 bash -c "</dev/tcp/18.219.61.156/22"
+
+          echo "Running ssh-keyscan..."
+          ssh-keyscan -T 10 -H 18.219.61.156 2>ssh-keyscan.err >> ~/.ssh/known_hosts || {
+            echo "ssh-keyscan failed"
+            cat ssh-keyscan.err
+            exit 1
+          }
+
           chmod 644 ~/.ssh/known_hosts
 
       - name: Write SSH key
