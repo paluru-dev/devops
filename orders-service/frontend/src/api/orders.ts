@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { Order } from "../types/order";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://18.221.251.75:5000";
+const API_URL = import.meta.env.VITE_API_URL || "http://18.219.61.156:5000";
 
 export const getOrders = async (): Promise<Order[]> => {
   const response = await axios.get<Order[]>(`${API_URL}/orders`);
