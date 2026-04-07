@@ -118,7 +118,7 @@ function App() {
 
   return (
     <div style={{ maxWidth: "900px", margin: "0 auto", padding: "24px" }}>
-      <h1>Orders Management Sandia</h1>
+      <h1>Orders Management</h1>
 
       <div
         style={{
@@ -178,7 +178,7 @@ function App() {
       </div>
 
       <div>
-        <h2>Orders List Sandia</h2>
+        <h2>Orders List</h2>
 
         {loading && <p>Loading orders...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
